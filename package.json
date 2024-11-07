@@ -1,0 +1,15 @@
+{
+  "name": "kusho-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.sh", 
+  "bin": {
+    "kusho-cli": "./main.sh"
+  },
+  "scripts": {
+    "start": "bash ./main.sh"
+  },
+  "keywords": [],
+  "author": "Shivam Malpani",
+  "license": ""
+}
