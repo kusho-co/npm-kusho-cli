@@ -1,10 +1,10 @@
 {
   "name": "kusho-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
-  "main": "main.sh", 
+  "main": "main.sh",
   "bin": {
-    "kusho-cli": "./main.sh"
+    "kusho-cli": "main.sh"
   },
   "scripts": {
     "start": "bash ./main.sh"
