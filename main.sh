@@ -22,6 +22,7 @@ if [[ -f "$UUID_FILE" ]]; then
     saved_uuid=$(cat "$UUID_FILE")
 else
     new_uuid=$(uuidgen)
+    saved_uuid="$new_uuid"
     echo "$new_uuid" > "$UUID_FILE"
 fi
 
@@ -80,6 +81,7 @@ test_cases=()
 clear
 curl -X POST "https://be.kusho.ai/vscode/generate/streaming" \
      -H "Content-Type: application/json" \
+     -H "X-KUSHO-SOURCE: npm" \
      -d "$json_payload" --no-buffer | while read -r line; do
     
     if [[ "$line" == "[DONE]" ]]; then
@@ -174,6 +176,18 @@ while true; do
                 echo ""
                 curl -X "$method" "$url" $curl_headers -H "Content-Type: application/json" -d "$json_body"
                 echo ""
+                
+                json_payload=$(cat <<EOF
+                {
+                "name": "npm_run",
+                "machine_id": "$saved_uuid"
+                }
+                EOF
+                )
+
+                curl -s -X POST "https://be.kusho.ai/events/log/public" \
+                    -H "Content-Type: application/json" \
+                    -d "$json_payload" > /dev/null
             done
             ;;
         3)
