@@ -6,9 +6,28 @@ APP_NAME="kusho"
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "darwin"* ]]; then
     CONFIG_DIR="$HOME/.config/$APP_NAME"
 elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-    CONFIG_DIR="$APPDATA/$APP_NAME"
+    # Convert Windows path to proper format and ensure APPDATA is set
+    if [[ -z "$APPDATA" ]]; then
+        echo "Error: APPDATA environment variable is not set"
+        exit 1
+    fi
+    # Convert backslashes to forward slashes for consistency
+    CONFIG_DIR="${APPDATA}/$APP_NAME"
+    CONFIG_DIR="${CONFIG_DIR//\\//}"
 else
     echo "Unsupported OS"
+    exit 1
+fi
+
+# Create config directory if it doesn't exist
+if ! mkdir -p "$CONFIG_DIR" 2>/dev/null; then
+    echo "Error: Failed to create directory: $CONFIG_DIR"
+    exit 1
+fi
+
+# Verify the directory exists and is writable
+if [[ ! -d "$CONFIG_DIR" ]]; then
+    echo "Error: Config directory does not exist: $CONFIG_DIR"
     exit 1
 fi
 
