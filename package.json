@@ -1,6 +1,6 @@
 {
   "name": "kusho-cli",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "",
   "main": "main.sh",
   "bin": {
@@ -11,5 +11,9 @@
   },
   "keywords": [],
   "author": "Shivam Malpani",
-  "license": ""
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kusho-co/npm-kusho-cli.git"
+  }
 }
