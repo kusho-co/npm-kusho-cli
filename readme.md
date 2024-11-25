@@ -20,6 +20,9 @@ or you can use this for installing it globally
 npm i kusho-cli -g
 ```
 
+#### Note for Windows Users:
+`kusho-cli` works perfectly on all systems except Windows, where it is currently available only through **WSL (Windows Subsystem for Linux)**. You can find more information and installation instructions for WSL [here](https://learn.microsoft.com/en-us/windows/wsl/install).
+
 ### Usage
 
 - Invoke `kusho-cli` using this
